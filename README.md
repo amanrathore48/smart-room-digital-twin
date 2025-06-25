@@ -40,7 +40,7 @@ _Debug view with bounding boxes and scene information for development_
 
 This frontend application connects to a separate backend service that handles sensor data and WebSocket communication. The backend repository must be set up separately to enable real-time data functionality.
 
-For the backend code, please refer to the [Smart Room Backend Repository](https://github.com/amanrathore48/smart-room-backend).
+For the backend code, please refer to the [Smart Room Digital Twin Repository](https://github.com/amanrathore48/smart-room-digital-twin) and navigate to the backend folder.
 
 ## Setup Instructions
 
@@ -78,7 +78,7 @@ This frontend application expects a WebSocket connection to a backend server. By
 
 To enable real-time functionality, you need to:
 
-1. Set up the backend repository separately
+1. Set up the backend from the same repository by navigating to the backend directory
 2. Start the backend server before using real-time features in the frontend
 3. Alternatively, use the Manual Control Panel in the frontend for testing without a backend connection
 
