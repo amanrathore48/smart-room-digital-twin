@@ -118,21 +118,13 @@ src/
   app/                   # Next.js app directory
     globals.css          # Global styles
     layout.jsx           # Root layout
-    page.jsx             # Main application page
-
-  components/            # React components
+    page.jsx             # Main application page  components/            # React components
     ModelLoader.jsx      # 3D model loading animation
     SmartRoomScene.jsx   # Main 3D scene component
     SensorPanel.jsx      # Display and control for sensors
     ManualControlPanel.jsx # Controls for manual mode
     DebugTools.jsx       # Debug information panel
     KeyboardControls.jsx # Keyboard navigation controls
-
-    scene/               # Scene visualization components
-      ModelLoader.jsx    # Loading animation component
-      SceneLoader.jsx    # 3D scene loader
-      KeyboardControls.jsx # Keyboard navigation
-      DebugTools.jsx     # Debug overlay and tools
 
     visualizers/         # Sensor effect components
       TempParticle.jsx   # Temperature visualization
@@ -151,7 +143,4 @@ docs/                    # Documentation and screenshots
   ss-main.png           # Main scene screenshot
   ss-debug.png          # Debug view screenshot
   ss-manual.png         # Manual control panel screenshot
-
-LICENSE                  # MIT License
-take-screenshots.sh      # Helper script for taking screenshots
 ```
