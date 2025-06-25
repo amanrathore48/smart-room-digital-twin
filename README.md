@@ -32,15 +32,18 @@ _Debug view with bounding boxes and scene information for development_
 
 - **Frontend**:
   - Next.js (React framework)
-  - Three.js / React Three Fiber for 3D rendering
+  - Three.js for 3D rendering
   - Tailwind CSS for styling
   - WebSocket client for real-time data communication
+
+## Repositories
+
+- **Frontend**: [https://github.com/amanrathore48/smart-room-digital-twin](https://github.com/amanrathore48/smart-room-digital-twin)
+- **Backend**: [https://github.com/amanrathore48/smart-room-server](https://github.com/amanrathore48/smart-room-server)
 
 ## Backend Integration
 
 This frontend application connects to a separate backend service that handles sensor data and WebSocket communication. The backend repository must be set up separately to enable real-time data functionality.
-
-For the backend code, please refer to the [Smart Room Digital Twin Repository](https://github.com/amanrathore48/smart-room-digital-twin) and navigate to the backend folder.
 
 ## Setup Instructions
 
@@ -78,7 +81,7 @@ This frontend application expects a WebSocket connection to a backend server. By
 
 To enable real-time functionality, you need to:
 
-1. Set up the backend from the same repository by navigating to the backend directory
+1. Set up the backend from the separate backend repository
 2. Start the backend server before using real-time features in the frontend
 3. Alternatively, use the Manual Control Panel in the frontend for testing without a backend connection
 
@@ -106,22 +109,49 @@ To enable real-time functionality, you need to:
 ## Project Structure
 
 ```
-frontend/
-  public/           # Static assets including 3D models
-    avatar.glb      # 3D avatar model for occupancy visualization
-    living_room.glb # Main room 3D model
-    particle.png    # Particle texture for effects
-    red_house.glb   # Alternative house model
-  src/
-    app/            # Next.js app directory
-    components/     # React components
-      scene/        # Three.js scene components
-      three/        # Three.js utility components
-      ManualControlPanel.jsx  # Controls for manual mode
-      SensorPanel.jsx         # Display and control for sensors
-      SmartRoomScene.jsx      # Main 3D scene component
-    context/        # React context providers
-      SensorContext.jsx       # Context for sensor data
-    utils/          # Utility functions
-      threeJsHelpers.js       # Helper functions for Three.js
+public/                  # Static assets including 3D models
+  red-house-2.glb        # Main house 3D model
+  avatar.glb             # 3D avatar model for occupancy visualization
+  particle.png           # Particle texture for effects
+
+src/
+  app/                   # Next.js app directory
+    globals.css          # Global styles
+    layout.jsx           # Root layout
+    page.jsx             # Main application page
+
+  components/            # React components
+    ModelLoader.jsx      # 3D model loading animation
+    SmartRoomScene.jsx   # Main 3D scene component
+    SensorPanel.jsx      # Display and control for sensors
+    ManualControlPanel.jsx # Controls for manual mode
+    DebugTools.jsx       # Debug information panel
+    KeyboardControls.jsx # Keyboard navigation controls
+
+    scene/               # Scene visualization components
+      ModelLoader.jsx    # Loading animation component
+      SceneLoader.jsx    # 3D scene loader
+      KeyboardControls.jsx # Keyboard navigation
+      DebugTools.jsx     # Debug overlay and tools
+
+    visualizers/         # Sensor effect components
+      TempParticle.jsx   # Temperature visualization
+      Fog.jsx            # Humidity visualization
+      CO2.jsx            # CO2 level visualization
+      LightModel.jsx     # Light status visualization
+      Occupancy.jsx      # Occupancy visualization
+
+  context/               # React context providers
+    SensorContext.jsx    # Context for sensor data
+
+  utils/                 # Utility functions
+    threeJsHelpers.js    # Helper functions for Three.js
+
+docs/                    # Documentation and screenshots
+  ss-main.png           # Main scene screenshot
+  ss-debug.png          # Debug view screenshot
+  ss-manual.png         # Manual control panel screenshot
+
+LICENSE                  # MIT License
+take-screenshots.sh      # Helper script for taking screenshots
 ```
