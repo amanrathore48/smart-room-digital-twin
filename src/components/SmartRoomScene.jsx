@@ -27,16 +27,15 @@ import CO2 from "./visualizers/co2";
 
 // Modular component for Smart Room Scene with better structure for adding features
 export default function SmartRoomScene() {
-  // References for Three.js objects
-  const containerRef = useRef(null);
-  const sceneRef = useRef(null);
-  const rendererRef = useRef(null);
-  const cameraRef = useRef(null);
-  const controlsRef = useRef(null);
-  const animationFrameRef = useRef(null);
-  const modelRef = useRef(null);
-  const lightsRef = useRef({}); // Access sensor data from context
-  const { sensorData, visibility, isConnected } = useSensor();
+  const containerRef = useRef(null); // Reference to the container for the Three.js scene
+  const sceneRef = useRef(null); // Reference to the Three.js scene
+  const rendererRef = useRef(null); // Reference to the Three.js renderer
+  const cameraRef = useRef(null); // Reference to the Three.js camera
+  const controlsRef = useRef(null); // Reference to the Three.js controls
+  const animationFrameRef = useRef(null); // Reference for the animation frame ID
+  const modelRef = useRef(null); // Reference to the loaded 3D model
+  const lightsRef = useRef({}); // Reference to the lights in the scene
+  const { sensorData, visibility, isConnected } = useSensor(); // Access sensor data from context
 
   // State for debug mode toggling - shared between DebugTools and KeyboardControls
   const [debugMode, setDebugMode] = useState(false);
@@ -97,15 +96,13 @@ export default function SmartRoomScene() {
         const size = new THREE.Vector3();
         boundingBox.getSize(size);
 
-        // Model loaded successfully
-
         // Adjust control target to the center of the model
         if (controlsRef.current) {
           controlsRef.current.target.copy(center);
           controlsRef.current.update();
         }
 
-        // Optional: Adjust camera position based on model size for optimal view
+        // Adjust camera position based on model size for optimal view
         const maxDimension = Math.max(size.x, size.y, size.z);
         const distance = maxDimension * 2.5; // Adjust multiplier as needed for optimal view
 
@@ -168,20 +165,6 @@ export default function SmartRoomScene() {
       renderer.dispose();
     };
   }, []);
-
-  // Effect to respond to sensor data changes was removed
-  // Visualization is now handled by individual components
-
-  //   // Filter sensor data based on visibility settings
-  //   const filteredSensorData = {};
-  //   Object.keys(sensorData).forEach((key) => {
-  //     if (visibility[key]) {
-  //       filteredSensorData[key] = sensorData[key];
-  //     }
-  //   });
-  // }, [sensorData, visibility]);
-
-  // No longer need particle visibility toggle functionality
 
   return (
     <>

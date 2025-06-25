@@ -8,7 +8,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
  */
 export function createScene() {
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0xdedede); // Black background for maximum contrast with debug grid
+  scene.background = new THREE.Color(0xdedede);
   return scene;
 }
 
@@ -20,7 +20,7 @@ export function createScene() {
 export function createCamera(container) {
   const aspect = container.clientWidth / container.clientHeight;
   const camera = new THREE.PerspectiveCamera(50, aspect, 0.1, 10000);
-  camera.position.set(20, 25, 20); // Higher position to show the full model including roof
+  camera.position.set(20, 25, 20);
   return camera;
 }
 
@@ -142,7 +142,7 @@ export function configureGridMaterial(grid) {
   if (grid.material) {
     if (Array.isArray(grid.material)) {
       grid.material.forEach((mat) => {
-        mat.depthWrite = false;
+        mat.depthWrite = false; // Disable depth writing for better transparency
         mat.transparent = true;
         mat.opacity = 1.0;
       });
@@ -248,5 +248,3 @@ export function createResizeHandler(container, camera, renderer) {
     renderer.setSize(width, height);
   };
 }
-
-// No global scene effects are needed as all effects are now contained within the model
