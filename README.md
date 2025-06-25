@@ -118,7 +118,8 @@ src/
   app/                   # Next.js app directory
     globals.css          # Global styles
     layout.jsx           # Root layout
-    page.jsx             # Main application page  components/            # React components
+    page.jsx             # Main application page
+  components/            # React components
     ModelLoader.jsx      # 3D model loading animation
     SmartRoomScene.jsx   # Main 3D scene component
     SensorPanel.jsx      # Display and control for sensors
