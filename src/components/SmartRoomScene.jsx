@@ -15,15 +15,15 @@ import {
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 // Import UI components
-import DebugTools from "./scene/DebugTools";
-import KeyboardControls from "./scene/KeyboardControls";
-import ModelLoader from "./scene/ModelLoader";
+import DebugTools from "./DebugTools";
+import KeyboardControls from "./KeyboardControls";
+import ModelLoader from "./ModelLoader";
 // Import scene components
-import TempParticle from "./scene/TempParticle";
-import Fog from "./scene/Fog";
-import LightModel from "./scene/LightModel";
-import Occupancy from "./scene/Occupancy";
-import CO2 from "./scene/co2";
+import TempParticle from "./visualizers/TempParticle";
+import Fog from "./visualizers/Fog";
+import LightModel from "./visualizers/LightModel";
+import Occupancy from "./visualizers/Occupancy";
+import CO2 from "./visualizers/co2";
 
 // Modular component for Smart Room Scene with better structure for adding features
 export default function SmartRoomScene() {

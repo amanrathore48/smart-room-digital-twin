@@ -4,31 +4,22 @@ import { useState, useEffect, useRef } from "react";
 import * as THREE from "three";
 
 // Debug tools component for Smart Room Scene
-// Shows bounding boxes, center points, and model info
-export const DebugTools = ({
-  scene,
-  model,
-  camera,
-  stats = {}, // Stats to display (temperature, humidity, etc.)
-  showDebug = false, // Debug mode state - controlled from parent
-  setShowDebug = () => {}, // Function to toggle debug mode - from parent
-}) => {
+// Shows bounding boxe and model info
+export const DebugTools = ({ scene, model, camera, showDebug = false }) => {
   const debugObjectsRef = useRef([]);
 
   // Create and manage debug objects
   useEffect(() => {
     if (!scene || !model) return;
 
+    // Get specific objects from the model
     const wall = model.getObjectByName("Material2024");
     const windows = model.getObjectByName("Material2017");
     const windowFrames = model.getObjectByName("Material2015");
 
-    // Hide the main model when debug mode is active
-    wall.visible = !showDebug;
+    wall.visible = !showDebug; // Hide walls
     windows.visible = !showDebug; // Hide windows as well
     windowFrames.visible = !showDebug; // Hide window frames as well
-
-    console.log("DebugTools: Found object:", wall);
 
     // Clean up previous debug objects
     cleanupDebugObjects();
@@ -47,32 +38,11 @@ export const DebugTools = ({
   const createDebugObjects = () => {
     if (!scene || !model) return;
 
-    // 1. Add model bounding box
+    // Add model bounding box
     const modelBox = new THREE.Box3().setFromObject(model);
-    const modelBoxHelper = new THREE.Box3Helper(modelBox, 0x0000ff); // Blue for main bounding box - more visible against whitish background
+    const modelBoxHelper = new THREE.Box3Helper(modelBox, 0x0000ff); // Blue for main bounding box
     scene.add(modelBoxHelper);
     debugObjectsRef.current.push(modelBoxHelper);
-
-    // 2. Add model center point
-    const modelCenter = new THREE.Vector3();
-    modelBox.getCenter(modelCenter);
-    const centerSphere = new THREE.Mesh(
-      new THREE.SphereGeometry(0.1, 16, 16),
-      new THREE.MeshBasicMaterial({ color: 0x00ff00 }) // Green center point - more visible against whitish background
-    );
-    centerSphere.position.copy(modelCenter);
-    scene.add(centerSphere);
-    debugObjectsRef.current.push(centerSphere);
-
-    // 3. Add axes helper at origin
-    const axesHelper = new THREE.AxesHelper(2); // Larger axes helper for better visibility
-    scene.add(axesHelper);
-    debugObjectsRef.current.push(axesHelper);
-
-    // 4. Add grid helper
-    const gridHelper = new THREE.GridHelper(10, 10, 0x000000, 0x0000cc); // Black and dark blue for better visibility against whitish background
-    scene.add(gridHelper);
-    debugObjectsRef.current.push(gridHelper);
   };
 
   // Remove all debug objects from scene

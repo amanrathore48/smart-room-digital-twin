@@ -95,6 +95,29 @@ body {
   }
 }
 
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(50px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(50px) rotate(-360deg);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
 .animate-spin-slow {
   animation: spin-slow 4s linear infinite;
 }
@@ -105,6 +128,16 @@ body {
 
 .animate-pulse-scale {
   animation: pulse-scale 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  transform-origin: center;
 }
 
 /* 3D Cube animations */
