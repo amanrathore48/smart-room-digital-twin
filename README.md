@@ -99,12 +99,16 @@ To enable real-time functionality, you need to:
 - Adjust temperature, humidity, and CO2 levels using sliders
 - Toggle occupancy and lighting status
 
-### 3D Navigation
+### Keyboard Controls
 
-- Use arrow keys to move camera position
-- Use +/- keys to adjust movement speed
-- Click and drag to rotate the view
-- Scroll to zoom in/out
+- **Navigation**:
+  - Arrow keys to move camera position
+  - +/- keys to adjust movement speed
+  - Click and drag to rotate the view
+  - Scroll to zoom in/out
+- **Display Options**:
+  - F key to toggle fullscreen mode
+  - D key to toggle debug mode (shows bounding boxes and stats)
 
 ## Project Structure
 

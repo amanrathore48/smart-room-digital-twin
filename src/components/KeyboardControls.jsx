@@ -9,16 +9,16 @@ export const KeyboardControls = ({
   camera,
   active = true, // This prop is ignored now as we want controls to always be active
 }) => {
-  const [currentSpeed, setCurrentSpeed] = useState(0.5);
-  const movementSpeed = useRef(0.5); // Movement speed per key press - increased from 0.2 to 0.5 for faster movement
+  const [currentSpeed, setCurrentSpeed] = useState(1);
+  const movementSpeed = useRef(1); // Movement speed per key press
   const keysPressed = useRef({}); // To track currently pressed keys
 
   // Function to adjust movement speed
   const adjustMovementSpeed = (delta) => {
     const newSpeed = Math.max(
       0.1,
-      Math.min(2.0, movementSpeed.current + delta)
-    ); // Increased max speed to 2.0
+      Math.min(3.0, movementSpeed.current + delta)
+    ); // Increased max speed to 3.0
     movementSpeed.current = newSpeed;
     setCurrentSpeed(newSpeed);
 
@@ -47,8 +47,6 @@ export const KeyboardControls = ({
         document.body.removeChild(speedNotification);
       }, 1500);
     }, 1500);
-
-    // Log removed for cleaner console
   };
 
   // Keyboard movement controls
@@ -118,8 +116,25 @@ export const KeyboardControls = ({
     };
   }, [camera]); // Only depend on camera, not active
 
+  // Full Screen toggle with 'f' key
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "f" || event.key === "F") {
+        if (document.fullscreenElement) {
+          document.exitFullscreen();
+        } else {
+          document.documentElement.requestFullscreen();
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   // Return null since we don't want to show any persistent UI
-  // Speed changes will be shown via temporary notifications
   return null;
 };
 
